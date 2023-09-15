@@ -1,0 +1,35 @@
+{
+  "version": 2,
+  "cmakeMinimumRequired": {
+      "major": 3,
+      "minor": 22,
+      "patch": 0
+  },
+  "configurePresets": [
+      {
+        "name": "llvm-demo",
+        "displayName": "llvm-demo",
+        "description": "Blinky Nucleo F031K6 board demo",
+        "generator": "Ninja",
+        "environment": {
+            "CORTEX_TYPE": "cm0",
+            "LLVM_CLANG_ROOT_FOLDER": "/Users/sohal/toolchains/LLVMEmbeddedToolchainForArm-17.0.0-Darwin-AArch64"
+        },
+        "binaryDir": "${sourceDir}/build/${presetName}",
+        "cacheVariables": {
+            "FETCHCONTENT_UPDATES_DISCONNECTED": "OFF",
+            "DEMO": true,
+            "CMAKE_BUILD_TYPE": "Debug",
+            "CMAKE_INSTALL_PREFIX": "${sourceDir}/install/${presetName}",
+            "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/_deps/cmake-toolchains-src/llvm-clang-arm.cmake",
+            "GITHUB_BRANCH_TOOLCHAIN": "HEAD"
+        }
+    }
+  ],
+  "buildPresets": [
+      {
+          "name": "llvm-demo",
+          "configurePreset": "llvm-demo"
+      }
+  ]
+}

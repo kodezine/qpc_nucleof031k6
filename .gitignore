@@ -1,0 +1,9 @@
+[bB]uild
+[dD]ebug
+[rR]elease
+.vs
+.vscode
+.settings
+*.launch
+_deps
+CMakeUserPresets.json
