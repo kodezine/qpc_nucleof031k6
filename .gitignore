@@ -7,3 +7,4 @@
 *.launch
 _deps
 CMakeUserPresets.json
+*.dot*
