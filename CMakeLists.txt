@@ -32,10 +32,12 @@ project(
 )
 set(STM32_TYPE "f0")
 set(STM32_DEVICE "STM32F031x6")
+set(JLINK_DEVICE "STM32F031K6")
 set(STM32_HAL_CONFIGURATION "${CMAKE_CURRENT_SOURCE_DIR}/cubemx/Core/Inc/stm32f0xx_hal_conf.h" CACHE STRING "File for configuring the STM32Cube.cmake below" FORCE)
 
+include(${cmake-toolchains_SOURCE_DIR}/frameworks/segger_rtt/segger_rtt.cmake)
 include(${cmake-toolchains_SOURCE_DIR}/silicon/st/STM32Cube.cmake)
-#include(${cmake-toolchains_SOURCE_DIR}/frameworks/lib_QPC.cmake)
+include(${cmake-toolchains_SOURCE_DIR}/frameworks/lib_QPC.cmake)
 include(${cmake-toolchains_SOURCE_DIR}/frameworks/unity/unity.cmake)
 include(${cmake-toolchains_SOURCE_DIR}/frameworks/cmock/cmock.cmake)
 include(${cmake-toolchains_SOURCE_DIR}/frameworks/unity/target/cortex-m.cmake)
