@@ -12,7 +12,7 @@
         "description": "Blinky Nucleo F031K6 board demo",
         "generator": "Ninja",
         "environment": {
-            "CORTEX_TYPE": "cm0",
+            "CORTEX_TYPE": "CM0",
             "LLVM_CLANG_ROOT_FOLDER": "/Users/sohal/toolchains/LLVMEmbeddedToolchainForArm-17.0.0-Darwin-AArch64"
         },
         "binaryDir": "${sourceDir}/build/${presetName}",
