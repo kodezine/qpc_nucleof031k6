@@ -16,17 +16,18 @@ set(TEST_INCLUDE_DIR
 )
 
 # Add optional include files here based on architecture ...
-if("${CMAKE_SYSTEM_PROCESSOR}" STREQUAL "ARM")
+if(CMAKE_SYSTEM_PROCESSOR STREQUAL "arm")
     set(OTHER_INCLUDE_DIR
     )
+
+    set(${PROJECT_NAME}_LLVM_LINKER_SCRIPT "llvm.ld")
+    set(${PROJECT_NAME}_LLVM_LINKER_PATH "${CMAKE_SOURCE_DIR}/cubemx")
+
 else()
     set(OTHER_INCLUDE_DIR
     )
 endif()
 
-
-set(${PROJECT_NAME}_LLVM_LINKER_SCRIPT "llvm.ld")
-set(${PROJECT_NAME}_LLVM_LINKER_PATH "${CMAKE_SOURCE_DIR}/cubemx")
 
 setUnityTestProjectProperties(${PROJECT_NAME} ${CMAKE_CURRENT_LIST_DIR})
 
