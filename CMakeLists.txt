@@ -2,7 +2,7 @@
 cmake_minimum_required(VERSION 3.22)
 include(CMakePrintHelpers)
 include(FetchContent)
-set(CORTEX_TYPE "cm0")
+
 # Set branch names for the sub modules dependencies
 set(GITHUB_BRANCH_TOOLCHAIN "HEAD" CACHE STRING "git SHA for CMake Toolchain")
 # set the location of all fetched repos
@@ -32,8 +32,17 @@ project(
 )
 set(STM32_TYPE "f0")
 set(STM32_DEVICE "STM32F031x6")
-#set(STM32_HAL_CONFIGURATION "${CMAKE_CURRENT_SOURCE_DIR}/cubemx/Core/Inc/stm32f0xx_hal_conf.h" CACHE STRING "File for configuring the STM32Cube.cmake below" FORCE)
-include(${cmake-toolchains_SOURCE_DIR}/silicon/st/STM32Cube.cmake)
-include(${cmake-toolchains_SOURCE_DIR}/frameworks/lib_QPC.cmake)
+set(JLINK_DEVICE "STM32F031K6")
+set(STM32_HAL_CONFIGURATION "${CMAKE_CURRENT_SOURCE_DIR}/cubemx/Core/Inc/stm32f0xx_hal_conf.h" CACHE STRING "File for configuring the STM32Cube.cmake below" FORCE)
 
-#include(cmake/qpc_app.cmake)
+if(CMAKE_SYSTEM_PROCESSOR STREQUAL "arm")
+    include(${cmake-toolchains_SOURCE_DIR}/frameworks/segger_rtt/segger_rtt.cmake)
+    include(${cmake-toolchains_SOURCE_DIR}/silicon/st/STM32Cube.cmake)
+    include(${cmake-toolchains_SOURCE_DIR}/frameworks/Quantum_Leaps/quantum_leaps.cmake)
+    add_subdirectory(cubemx)
+else()
+    message( STATUS "Compiling for Host system")
+endif()
+include(${cmake-toolchains_SOURCE_DIR}/frameworks/unity/unity.cmake)
+include(${cmake-toolchains_SOURCE_DIR}/frameworks/cmock/cmock.cmake)
+add_subdirectory(src/test)
