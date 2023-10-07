@@ -38,6 +38,8 @@ target_sources(${PROJECT_NAME}
 )
 
 target_include_directories(${PROJECT_NAME}
+    PRIVATE
+        ${cmsis_SOURCE_DIR}/include/cmsis
     PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/../cubemx/Core/Inc>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
@@ -65,6 +67,8 @@ write_basic_package_version_file(${PROJECT_NAME}ConfigVersion.cmake
 )
 
 target_link_libraries(${PROJECT_NAME}
+    INTERFACE
+    cmsis
     PUBLIC
         ${STM32CubeXX}
 )

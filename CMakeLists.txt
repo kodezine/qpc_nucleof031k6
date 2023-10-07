@@ -36,6 +36,7 @@ set(JLINK_DEVICE "STM32F031K6")
 set(STM32_HAL_CONFIGURATION "${CMAKE_CURRENT_SOURCE_DIR}/cubemx/Core/Inc/stm32f0xx_hal_conf.h" CACHE STRING "File for configuring the STM32Cube.cmake below" FORCE)
 
 if(CMAKE_SYSTEM_PROCESSOR STREQUAL "arm")
+    include(${cmake-toolchains_SOURCE_DIR}/frameworks/arm_cmsis/arm_cmsis.cmake)
     include(${cmake-toolchains_SOURCE_DIR}/frameworks/arm_cmsis_dsp/arm_cmsis_dsp.cmake)
     include(${cmake-toolchains_SOURCE_DIR}/frameworks/segger_rtt/segger_rtt.cmake)
     include(${cmake-toolchains_SOURCE_DIR}/silicon/st/STM32Cube.cmake)
