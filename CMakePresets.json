@@ -13,7 +13,7 @@
         "generator": "Ninja",
         "environment": {
             "CORTEX_TYPE": "CM0",
-            "LLVM_CLANG_ROOT_FOLDER": "/Users/sohal/toolchains/LLVMEmbeddedToolchainForArm-17.0.0-Darwin-AArch64",
+            "LLVM_CLANG_ROOT_FOLDER": "$env{HOME}/llvm_arm",
             "SEGGER_JLINK_ROOT_FOLDER": "/Applications/SEGGER/JLink"
         },
         "binaryDir": "${sourceDir}/build/${presetName}",
