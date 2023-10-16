@@ -1,5 +1,5 @@
 project(
-    cubemx
+    coreMx
     VERSION     0.0.1
     LANGUAGES   C ASM CXX
     DESCRIPTION "Cube MX project"
@@ -10,10 +10,7 @@ endif()
 if(NOT DEFINED STM32_DEVICE)
     message(FATAL_ERROR "${PROJECT_NAME} can only compile with a STM32 device definition")
 endif()
-if(NOT DEFINED ARMCMSIS_DEVICE)
-    message(FATAL_ERROR "${PROJECT_NAME} can only compile with a valid ARMCMx definition")
-endif()
-
+set (ARMCMSIS_DEVICE "ARM$ENV{CORTEX_TYPE}")
 include(GNUInstallDirs)
 include(CMakePackageConfigHelpers)
 include(CMakePrintHelpers)
@@ -39,7 +36,8 @@ target_sources(${PROJECT_NAME}
 
 target_include_directories(${PROJECT_NAME}
     PRIVATE
-        ${cmsis_SOURCE_DIR}/include/cmsis
+        ${cmsis-v5_SOURCE_DIR}/include/cmsis-v5
+        ${cubemx_SOURCE_DIR}/include/cubemx
     PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/../cubemx/Core/Inc>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
@@ -47,9 +45,10 @@ target_include_directories(${PROJECT_NAME}
 )
 
 target_compile_definitions(${PROJECT_NAME}
-    PUBLIC
-        USE_HAL_DRIVER
-        ${STM32_DEVICE}
+    PRIVATE
+    USE_HAL_DRIVER
+    USE_FULL_LL_DRIVER
+    ${STM32_DEVICE}
 )
 
 set_target_properties(${PROJECT_NAME}
@@ -68,9 +67,9 @@ write_basic_package_version_file(${PROJECT_NAME}ConfigVersion.cmake
 
 target_link_libraries(${PROJECT_NAME}
     INTERFACE
-    cmsis
+    cmsis-v5
     PUBLIC
-        ${STM32CubeXX}
+        cubemx
 )
 
 setTargetCompileOptions(PROJECT_NAME)
