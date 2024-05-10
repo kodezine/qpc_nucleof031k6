@@ -1,5 +1,5 @@
 /**
- * @file source.h
+ * @file main.h
  * @author your name (you@domain.com)
  * @brief 
  * @version 0.1
@@ -8,8 +8,8 @@
  * @copyright Copyright (c) 2023
  * MIT license
  */
-#ifndef SOURCE_H
-#define SOURCE_H
+#ifndef MAIN_H
+#define MAIN_H
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -23,8 +23,8 @@ extern "C" {
  */
 uint8_t addOneToByte(const uint8_t byte);
 
-
+void SystemInit(void);
 #ifdef __cplusplus
 }
 #endif
-#endif //SOURCE_H
+#endif //MAIN_H
